@@ -3,8 +3,6 @@ provider "aws" {
 }
 
 locals {
-  name   = "lanchonete-cluster"
-
   vpc_cidr = "10.123.0.0/16"
   azs      = ["us-east-1a", "us-east-1b"]
 
@@ -13,14 +11,15 @@ locals {
   intra_subnets   = ["10.123.5.0/24", "10.123.6.0/24"]
 
   tags = {
-    Lanchonete = local.name
+    Lanchonete = var.name
+    Environment = var.environment
   }
 }
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
 
-  name = local.name
+  name = var.name
   cidr = local.vpc_cidr
 
   azs             = local.azs
@@ -43,11 +42,11 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "19.15.1"
 
-  cluster_name                   = local.name
+  cluster_name                   = var.name
   cluster_endpoint_public_access = true
 
   cluster_tags = {
-    "kubernetes.io/cluster/${local.name}" = null
+    "kubernetes.io/cluster/${var.name}" = null
   }
 
   cluster_addons = {
