@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "~> 3.27"
+      version = "5.34.0"
     }
   }
 }
@@ -22,7 +22,7 @@ module "vpc_lanchonete" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "3.72.0"
+  version = "19.21.0"
 
   cluster_name                   = var.name
   cluster_endpoint_public_access = true
