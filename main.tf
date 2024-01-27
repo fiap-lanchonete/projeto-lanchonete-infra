@@ -1,5 +1,6 @@
 provider "aws" {
-  region = var.region
+  region  = var.region
+  profile = "default"  # Utiliza o perfil configurado no AWS CLI
 }
 
 module "vpc_lanchonete" {
