@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "vpc_lanchonete" {
-  source = "./modules/vpc"
+  source = "./modules/vpc_lanchonete"
   tags = {
     Name        = var.name
     Environment = var.environment
