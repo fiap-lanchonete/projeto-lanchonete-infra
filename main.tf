@@ -22,7 +22,7 @@ module "vpc_lanchonete" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "19.15.1"
+  version = "3.72.0"
 
   cluster_name                   = var.name
   cluster_endpoint_public_access = true
